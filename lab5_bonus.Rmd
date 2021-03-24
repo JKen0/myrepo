@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Lab 9: Bonus for Assignment 5"
 author: "Kenneth Matira"
 date: "23/03/2021"
 output: html_document
@@ -9,22 +9,32 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Neural networks (seeds data)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+seeds data set from UCI repository1
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Explore the data.
 
-```{r cars}
-summary(cars)
+Measurements of geometrical properties of kernels belonging to three different varieties of wheat. A soft X-ray technique and GRAINS package were used to construct all seven, real-valued attributes.
+
+```{r}
+library(tidyverse)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+seeds <- read.table(
+  "https://archive.ics.uci.edu/ml/machine-learning-databases/00236/seeds_dataset.txt"
+  )
+colnames(seeds) <- c("area", 
+                     "perimeter", 
+                     "compactness", 
+                     "length_of_kernel", 
+                     "width_of_kernel",
+                     "asy_coeff", 
+                     "length_of_kernel_groove", 
+                     "Class")
+summary(seeds)
+cor(dplyr::select(seeds, -Class))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
